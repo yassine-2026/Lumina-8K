@@ -24,6 +24,18 @@ export default function App() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [selectedEnhancement, setSelectedEnhancement] = useState<EnhancementType | null>(null);
   const [prediction, setPrediction] = useState<PredictionState | null>(null);
+  const [missingKeys, setMissingKeys] = useState<string[]>([]);
+
+  React.useEffect(() => {
+    fetch('/api/status')
+      .then(res => res.json())
+      .then(data => {
+        if (data.missingKeys && data.missingKeys.length > 0) {
+          setMissingKeys(data.missingKeys);
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   const onDrop = (acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
@@ -121,6 +133,15 @@ export default function App() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-12 space-y-12">
+        {missingKeys.length > 0 && (
+          <div className="bg-orange-500/10 border border-orange-500/20 text-orange-200 p-4 w-full rounded-2xl flex items-center justify-center gap-3">
+            <AlertCircle className="w-5 h-5 shrink-0" />
+            <div className="text-sm">
+              <span className="font-medium">Missing API Keys:</span> Please configure <code className="bg-black/30 px-1 py-0.5 rounded mx-1">{missingKeys.join(', ')}</code> in Vercel Environment Variables.
+            </div>
+          </div>
+        )}
+
         <div className="text-center space-y-4">
           <h1 className="text-4xl sm:text-5xl font-medium tracking-tight bg-gradient-to-br from-white to-gray-500 bg-clip-text text-transparent">
             Absolute Clarity.
