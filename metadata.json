@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Lumina 8K",
+  "description": "Professional 8K AI Image and Video Enhancer",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

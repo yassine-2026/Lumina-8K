@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { UploadCloud, Image as ImageIcon, Video, Wand2, Sparkles, AlertCircle, Download, CheckCircle2 } from 'lucide-react';
+import { CloudUpload as UploadCloud, Image as ImageIcon, Video, Wand2, Sparkles, AlertCircle, Download, CircleCheck as CheckCircle2 } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
 import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slider';
 import clsx from 'clsx';
